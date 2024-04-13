@@ -24,3 +24,11 @@ urlpatterns = [
 
     path('accounts/', include('accounts.urls'))
 ]
+
+
+"""
+1. 회원가입을 기능을 구현
+2. 로그인 로그아웃 기능 구현
+3. 글 CRUD구현 하기 ( 회원의 PK 값을 보유 하고 있어야 함)
+4. 프로필 페이지 만들기
+"""
