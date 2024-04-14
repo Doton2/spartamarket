@@ -5,7 +5,9 @@
 
 <h1>index</h1>
 <br>
+
 <a href="{% url 'products:create'%}"> product create </a>
+
 <hr>
 {% for product in products %}
     <a href="{% url 'products:product' product.pk %}">제목 : {{product.title}}</a>
