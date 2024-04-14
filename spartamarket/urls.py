@@ -18,12 +18,20 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index, name='index'),
 
-    path('accounts/', include('accounts.urls'))
+    path('accounts/', include('accounts.urls')),
+    path('products/', include('products.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 
 """
@@ -31,4 +39,5 @@ urlpatterns = [
 2. 로그인 로그아웃 기능 구현
 3. 글 CRUD구현 하기 ( 회원의 PK 값을 보유 하고 있어야 함)
 4. 프로필 페이지 만들기
+5. 
 """
