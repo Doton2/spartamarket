@@ -15,8 +15,29 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from . import views
+
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',views.index, name='index'),
+
+    path('accounts/', include('accounts.urls')),
+    path('products/', include('products.urls')),
+    path('users/',include('users.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+
+"""
+1. 회원가입을 기능을 구현
+2. 로그인 로그아웃 기능 구현
+3. 글 CRUD구현 하기 ( 회원의 PK 값을 보유 하고 있어야 함)
+4. 프로필 페이지 만들기 / 누구나 관람이 가능하다, 팔로우 기능이 있다.
+"""
