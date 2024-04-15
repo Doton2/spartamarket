@@ -2,16 +2,38 @@
 
 {% block content %}
 
-
 <h1>index</h1>
 <br>
 
 <a href="{% url 'products:create'%}"> product create </a>
 
 <hr>
-{% for product in products %}
-    <a href="{% url 'products:product' product.pk %}">제목 : {{product.title}}</a>
-    <br>
-    <br>
-{% endfor%}
+<div class="row row-cols-1 row-cols-md-4 g-4">
+    {% for product in products %}
+    <div class="col">
+        <div class="card" style="width: 18rem;">
+            <a href="{% url 'products:product' product.pk %}">
+                {% if product.imgea %}
+                <img src="#" class="card-img-top" alt="...">
+                {% else %}
+                <img src="http://placehold.it/150X150" class="card-img-top" alt="...">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{product.title}}</h5>
+                </div>
+            </a>
+            <form action="{% url 'users:like' product.pk %}" method="POST">
+                {% csrf_token %}
+                {% if request.user in product.like_users.all %}
+                <button type="submit"> 좋아요 취소 </button>
+                {% else %}
+                <button type="submit"> 좋아요 </button>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+    {% endfor%}
+</div>
+
+
 {% endblock %}

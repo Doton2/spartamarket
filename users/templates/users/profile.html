@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<h1>User Profile</h1>
+
+<p>{{user.pk}}</p>
+<p>{{user.username}}</p>
+
+{% if request.user.pk != user.pk %}
+<form action="{% url 'users:follow' user.pk%}"method="POST">
+    {% csrf_token %}
+    {% if request.user in user.follwers.all %}
+    <button type="submit"> 언팔로우 </button>
+    {% else %}
+    <button type="submit"> 팔로우 </button>
+    {% endif %}
+</form>
+{% endif %}
+
+{% for UserProduct in UserProducts %}
+<a href="{% url 'products:product' UserProduct.pk %}">
+    {{UserProduct.title}}
+</a>
+<br>
+{% endfor %}
+{% endblock %}

@@ -7,4 +7,4 @@ class FormProducts(forms.ModelForm):
     class Meta:
         model = Products
         fields = "__all__"
-        exclude = ['user']
+        exclude = ['user', 'like_users']

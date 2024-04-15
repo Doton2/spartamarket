@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth import login as auth_login , logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import CustomUserCreationForm
 from django.views.decorators.http import require_POST,require_http_methods
+
+
 # from .forms import CustomUserCreationForm
 
 
@@ -39,3 +41,8 @@ def signup(request):
         form = CustomUserCreationForm()
     context = {'form': form}
     return render(request,'accounts/signup.html', context)
+
+
+
+
+

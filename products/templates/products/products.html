@@ -4,6 +4,7 @@
 
 <h1>{{products.title}}</h1>
 
+<a href="{% url 'users:profile' products.user_id %}"> 유저 프로필 </a>
 <P>{{ products.add_date }}</P>
 {% if products.image %}
 <img src="{{ products.image.url }}" alt="">
