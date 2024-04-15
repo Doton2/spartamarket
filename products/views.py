@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect,get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import FormProducts
 from .models import Products
 from django.contrib.auth.decorators import login_required
@@ -6,7 +6,7 @@ from django.views.decorators.http import require_POST,require_http_methods
 
 # Create your views here.
 def product(request,pk):
-    products = Products.objects.get(pk=pk)
+    products = get_object_or_404(Products,pk=pk)
     context = {'products': products}
     return render(request, 'products/products.html',context )
 
@@ -25,9 +25,9 @@ def create(request):
     context = { "form":form}
     return render(request, 'products/create.html',context )
 
-
+@login_required
 def update(request, pk):
-    product = Products.objects.get(pk=pk)
+    product = get_object_or_404(Products,pk=pk)
     if request.method == 'POST':
         form = FormProducts(request.POST, request.FILES,instance=product )
         if form.is_valid():
@@ -38,9 +38,9 @@ def update(request, pk):
     context = {'form':form, 'product':product}
     return render(request, 'products/update.html', context)
 
-
+@login_required
 def delete(request, pk):
-    deletes = Products.objects.get(pk=pk)
+    deletes = get_object_or_404(Products,pk=pk)
     Products.delete(deletes)
     return redirect('index')
 
