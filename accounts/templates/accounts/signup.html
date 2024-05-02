@@ -4,10 +4,8 @@
 
 <h1>회원가입</h1>
 
-<form action="/accounts/signup/" method="POST">
+<form action="{% url 'accounts:signup' %}" method="POST">
     {% csrf_token %}
-    <input type="hidden" name="csrfmiddlewaretoken"
-        value="6Fv6mXIQ5ohZ31HM1vj4OatizRGYX4SWBLZFRsPI3IoVBzsaOc7OugfqRG57IG96">
 <br>
     <div>
         <label for="id_username">Username:</label>

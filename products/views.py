@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST,require_http_methods
 
 # Create your views here.
+@login_required
 def product(request,pk):
     products = get_object_or_404(Products,pk=pk)
     context = {'products': products}
@@ -37,6 +38,7 @@ def update(request, pk):
         form = FormProducts(instance=product)
     context = {'form':form, 'product':product}
     return render(request, 'products/update.html', context)
+
 
 @login_required
 def delete(request, pk):
